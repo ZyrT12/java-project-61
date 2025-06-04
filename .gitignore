@@ -4,17 +4,13 @@
 # Ignore Gradle build output directory
 build
 
-# ---------------------
 # Temporary files
-# ---------------------
 *.tmp
 *.swp
 *.bak
 *.old
 
-# ---------------------
 # IntelliJ IDEA
-# ---------------------
 .idea/
 *.iml
 *.iws
