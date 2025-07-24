@@ -1,6 +1,16 @@
 plugins {
     id("java")
     application
+    id("org.sonarqube") version "6.2.0.5505"
+    checkstyle
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "ZyrT12_java-project-612")
+        property("sonar.organization", "zyrt12")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 application {
@@ -26,3 +36,5 @@ tasks.test {
 tasks.getByName("run", JavaExec::class) {
     standardInput = System.`in`
 }
+
+
