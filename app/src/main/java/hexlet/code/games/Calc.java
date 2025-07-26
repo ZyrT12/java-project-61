@@ -38,11 +38,21 @@ public class Calc {
     }
 
     private static int calculate(int a, int b, String operator) {
-        return switch (operator) {
-            case "+" -> a + b;
-            case "-" -> a - b;
-            case "*" -> a * b;
-            default -> throw new IllegalStateException("Unexpected operator: " + operator);
-        };
+        int result;
+        switch (operator) {
+            case "+":
+                result = a + b;
+                break;
+            case "-":
+                result = a - b;
+                break;
+            case "*":
+                result = a * b;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected operator: " + operator);
+        }
+        return result;
     }
+
 }
