@@ -1,12 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-
-import java.util.Random;
+import hexlet.code.Utils;
 
 public class Progression {
 
-    private static final Random RANDOM = new Random();
     private static final int MIN_START = 1;
     private static final int MAX_START = 50;
     private static final int MIN_STEP = 1;
@@ -19,24 +17,20 @@ public class Progression {
         String[][] gameData = new String[Engine.COUNT_ROUNDS][2];
 
         for (int i = 0; i < Engine.COUNT_ROUNDS; i++) {
-            int start = getRandomNumber(MIN_START, MAX_START);
-            int step = getRandomNumber(MIN_STEP, MAX_STEP);
-            int length = getRandomNumber(MIN_LENGTH, MAX_LENGTH);
-            int hiddenIndex = RANDOM.nextInt(length);
+            int start = Utils.generateNumber(MIN_START, MAX_START);
+            int step = Utils.generateNumber(MIN_STEP, MAX_STEP);
+            int length = Utils.generateNumber(MIN_LENGTH, MAX_LENGTH);
+            int hiddenIndex = Utils.generateNumber(0, length - 1);
 
             int[] progression = generateProgression(start, step, length);
-            String correctAnswer = Integer.toString(progression[hiddenIndex]);
-            StringBuilder questionBuilder = new StringBuilder();
+            String[] progressionStr = convertToStringArray(progression);
 
-            for (int j = 0; j < length; j++) {
-                if (j == hiddenIndex) {
-                    questionBuilder.append(".. ");
-                } else {
-                    questionBuilder.append(progression[j]).append(" ");
-                }
-            }
+            String correctAnswer = progressionStr[hiddenIndex];
+            progressionStr[hiddenIndex] = "..";
 
-            gameData[i][0] = questionBuilder.toString().trim();
+            String question = String.join(" ", progressionStr);
+
+            gameData[i][0] = question;
             gameData[i][1] = correctAnswer;
         }
 
@@ -51,7 +45,11 @@ public class Progression {
         return progression;
     }
 
-    private static int getRandomNumber(int min, int max) {
-        return RANDOM.nextInt(max - min + 1) + min;
+    private static String[] convertToStringArray(int[] numbers) {
+        String[] result = new String[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            result[i] = Integer.toString(numbers[i]);
+        }
+        return result;
     }
 }

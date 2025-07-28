@@ -1,12 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-
-import java.util.Random;
+import hexlet.code.Utils;
 
 public class GCD {
 
-    private static final Random RANDOM = new Random();
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 100;
 
@@ -15,8 +13,8 @@ public class GCD {
         String[][] gameData = new String[Engine.COUNT_ROUNDS][2];
 
         for (int i = 0; i < Engine.COUNT_ROUNDS; i++) {
-            int num1 = getRandomNumber();
-            int num2 = getRandomNumber();
+            int num1 = Utils.generateNumber(MIN_NUMBER, MAX_NUMBER);
+            int num2 = Utils.generateNumber(MIN_NUMBER, MAX_NUMBER);
             String question = num1 + " " + num2;
             String answer = String.valueOf(findGCD(num1, num2));
 
@@ -25,10 +23,6 @@ public class GCD {
         }
 
         Engine.startGame(description, gameData);
-    }
-
-    private static int getRandomNumber() {
-        return RANDOM.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
     }
 
     private static int findGCD(int a, int b) {

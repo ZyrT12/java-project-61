@@ -46,7 +46,7 @@ public class App {
                 System.out.println("Goodbye!");
                 break;
             default:
-                System.out.println("Invalid choice.");
+                System.out.println("Incorrect choice: '" + choice + "'");
                 break;
         }
     }
