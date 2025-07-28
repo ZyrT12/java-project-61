@@ -16,5 +16,7 @@ A project with proposals for joint games (brain games). This is a learning proje
 ## How to launch
 
 ``bash
+
 make build # Project build
+
 make run-dist # Launching the app
